@@ -216,7 +216,7 @@ where:
 
 ### Step 1: Clone and Configure Environment
 ```bash
-git clone <repository-url>
+git clone github.com/PradyumanAsore/wind-forecast-analytics
 cd uk-wind-forecast-platform
 cp .env.example .env
 ```
