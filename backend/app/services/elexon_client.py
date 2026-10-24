@@ -7,6 +7,7 @@ to verified historical Elexon fixtures.
 import hashlib
 import json
 import logging
+import tempfile 
 import os
 from datetime import date, datetime, timedelta
 from typing import List, Optional, Tuple
@@ -33,8 +34,14 @@ class ElexonClient:
         timeout: int = settings.elexon_request_timeout_seconds
     ):
         self.base_url = base_url.rstrip("/")
-        self.cache_dir = cache_dir
-        self.fixtures_dir = fixtures_dir
+        self.cache_dir = os.path.join(
+            tempfile.gettempdir(),
+            "wind-forecast-cache"
+        )
+        self.fixtures_dir = os.path.join(
+            tempfile.gettempdir(),
+            "wind-forecast-fixtures",
+        )
         self.enable_cache = enable_cache
         self.timeout = timeout
         os.makedirs(self.cache_dir, exist_ok=True)
